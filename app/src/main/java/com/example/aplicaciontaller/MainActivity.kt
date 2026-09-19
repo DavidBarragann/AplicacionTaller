@@ -15,7 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.aplicaciontaller.View.ContadorScreen
 import com.example.aplicaciontaller.View.HomeView
+import com.example.aplicaciontaller.View.LoginView
 import com.example.aplicaciontaller.ViewModel.ContadorViewModel
+import com.example.aplicaciontaller.navigation.NavGraph
 import com.example.aplicaciontaller.ui.theme.AplicacionTallerTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,8 +27,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AplicacionTallerTheme {
                 Scaffold( modifier = Modifier.fillMaxSize() ) { innerPadding ->
-                    HomeView(modifier = Modifier.padding(innerPadding),
-                        onItemSelected = {})
+                    NavGraph(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

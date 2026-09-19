@@ -35,10 +35,11 @@ fun Title(text:String){
 }
 
 @Composable
-fun CartButton(){
+fun CartButton(onClick: () -> Unit = {}) {
     FloatingActionButton(
-        onClick = {},
-        containerColor = MaterialTheme.colorScheme.primary) {
+        onClick = onClick,
+        containerColor = MaterialTheme.colorScheme.primary
+    ) {
         Icon(
             painter = painterResource(R.drawable.outline_shopping_cart_24),
             contentDescription = "Ir al carrito"
@@ -51,15 +52,18 @@ fun MainScaffold(
     onItemSelected:(Int) -> Unit,
     topBar:@Composable () -> Unit ={},
     floatingActionButton: @Composable () -> Unit  = {},
+    showBottomBar: Boolean=true,
     content: @Composable (PaddingValues) -> Unit
 ){
     Scaffold(
         topBar=topBar,
         bottomBar = {
-            BottomMenu(
-                selectedItem = selectedItem,
-                onItemSelected = onItemSelected
-            )
+            if(showBottomBar){
+                BottomMenu(
+                    selectedItem = selectedItem,
+                    onItemSelected = onItemSelected
+                )
+            }
         },
         floatingActionButton = floatingActionButton,
         content = content
