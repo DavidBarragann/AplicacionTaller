@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.aplicaciontaller.View.CartView
+import com.example.aplicaciontaller.View.CheckOutView
 import com.example.aplicaciontaller.View.FavoritesView
 import com.example.aplicaciontaller.View.HomeView
 import com.example.aplicaciontaller.View.LoginView
@@ -94,7 +95,18 @@ fun NavGraph(
             CartView(onItemSelected = { index ->
              navigateByBar(navController, index)
             },
-                onBackClick = {navController.popBackStack()})
+                onBackClick = {navController.popBackStack()},
+                onCheckoutCLick = {navController.navigate(Routes.Checkout.route)}
+                )
+        }
+
+        composable(Routes.Checkout.route){
+            CheckOutView(
+                onItemSelected = {index->
+                    navigateByBar(navController,index)
+                },
+                onBackClick = {navController.popBackStack()}
+            )
         }
     }
 }

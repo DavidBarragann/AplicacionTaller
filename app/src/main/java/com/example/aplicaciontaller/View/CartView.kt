@@ -50,7 +50,8 @@ import kotlinx.coroutines.flow.compose
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CartView(onItemSelected: (Int) -> Unit,
-             onBackClick:()-> Unit ={}) {
+             onBackClick:()-> Unit ={},
+             onCheckoutCLick:()-> Unit={}) {
     val context = LocalContext.current
     val database = AppDatabase.getDatabase(context)
     val cartRepository = CartRepository(database.cartItemDao())
@@ -105,7 +106,7 @@ fun CartView(onItemSelected: (Int) -> Unit,
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = {},
+                onClick = onCheckoutCLick,
                 modifier = Modifier.fillMaxWidth(),
                 enabled = cartProducts.isNotEmpty(),
                 shape = MaterialTheme.shapes.medium
